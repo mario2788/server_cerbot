@@ -1,0 +1,50 @@
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-cerbot
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: server-cerbot
+  template:
+    metadata:
+      labels:
+        app: server-cerbot
+    spec:
+      containers:
+      - name: node-app
+        image: node:20-alpine3.17
+        workingDir: /server
+        command: ["sh", "initServer.sh"]
+        volumeMounts:
+        - name: app-volume
+          mountPath: /server
+      volumes:
+        - name: app-volume
+          hostPath:
+           path: /home/ubuntu/server_cerbot
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-cerbot
+spec:
+  selector:
+    app: server-cerbot
+  ports:
+    - protocol: TCP
+      port: 60222
+      targetPort: 60222
+  type: ClusterIP
+
+  # LoadBalancer: Trafico externo
+  # ClusterIP: Trafico interno
+  # NodePort: Pruebas y desarrollo, se expecifica un puerto
