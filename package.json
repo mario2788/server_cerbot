@@ -1,0 +1,15 @@
+{
+  "name": "server_cerbot",
+  "version": "1.0.0",
+  "description": "Implementación para servir los archivos solicitados por Cerbot para crear un certificado SSl",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Mario Cuellar - 2024",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
