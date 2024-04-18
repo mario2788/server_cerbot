@@ -13,7 +13,7 @@ class ServerClass {
         this.port = 60222;
 
         // Rutas generales
-        this.file = '/file';
+        this.file = '/.well-known';
         this.test = '/test';
 
         // Middlewares
