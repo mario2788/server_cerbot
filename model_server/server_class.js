@@ -40,10 +40,8 @@ class ServerClass {
     }
 
     routes() {
-        
         this.app.use( this.test, require('../routes/test') ),
         this.app.use( this.file, require('../routes/file') )
-        
         // this.app.use( this.clinitPrinted, require('../routes/clinitPrinted') )
     }
 
